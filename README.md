@@ -47,6 +47,12 @@ In order to remove a file from the Lustre backend, the file should be released o
 ```bash
 az_lfs_hsm_remove <file_path>
 ```
+
+In some cases, it may also be necessary to remove a file from the backend after the original file on the Lustre file system has been removed. This can be done with the -c or --cleanup option. To avoid accidental deletion of backend data, the command will print an error and won't perform any operation if the specified file still exists on the Lustre file system
+
+```bash
+az_lfs_hsm_remove --cleanup <original_file_path>
+```
 ## Deleted HSM files
 
 The files that are delated from HSM will be marked with `lfs hsm_state` as lost and dirty. This means that deleting from Lustre FileSystem will cause total lost of date.
